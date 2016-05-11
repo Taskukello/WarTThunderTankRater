@@ -1,0 +1,33 @@
+<%= form_for(@tank) do |f| %>
+  <% if @tank.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tank.errors.count, "error") %> prohibited this tank from being saved:</h2>
+
+      <ul>
+      <% @tank.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :country_id %><br>
+    <%= f.select :country_id, options_from_collection_for_select(@countries, :id, :name)%>
+  </div>
+  <div class="field">
+    <%= f.label :type_id %><br>
+    <%= f.select :type_id, options_from_collection_for_select(@types, :id, :name)%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

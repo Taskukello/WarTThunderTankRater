@@ -8,6 +8,21 @@
 </head>
 <body>
 
+	<div class >			
+			<%= link_to  'Countries',  countries_path %>
+			<%= link_to 'Types', types_path %>
+			<%= link_to 'Tanks', tanks_path %>
+			<%= link_to 'Users', users_path %>
+			<% if !current_user %>
+		        <%= link_to 'login', new_session_path %>
+				<%= link_to 'signup', new_user_path %>
+			<%end %>
+			<% if current_user %>
+				| signed in as <%= current_user.name %>
+				<%= link_to 'signout', signout_path %>
+			<% end %>
+	</div>
+
 <%= yield %>
 
 </body>
