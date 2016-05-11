@@ -4,7 +4,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'coffee-script-source', '1.8.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
-ruby '2.1.8'
+#ruby '2.1.8'
 
 
 # Use SCSS for stylesheets
