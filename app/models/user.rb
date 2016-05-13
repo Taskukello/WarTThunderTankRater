@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  
+has_many :ratings  
   
 validate :password_complexity
 validates :name, uniqueness: true

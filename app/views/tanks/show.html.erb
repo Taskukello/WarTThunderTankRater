@@ -19,6 +19,55 @@
   <strong>Type:</strong>
   <%= @type.name%>
 </p>
+<p> number of ratings: <%= @ratings.size %> </p>
+<table class= "table">
+  <thead>
+    <tr>
+      <th>Rating</th>	  
+	   <th>Rated by</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ratings.each do |rating| %>
+      <tr>
+        <td><%= rating.rating %></td>
+		<td><%= @users.find(rating.user_id).name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if current_user %>
+<% if @emptyChecker == nil%>
+<%= form_for (@rating), :url => ratings_path, :html => {:method => :post} do |f| %>
+  <% if @rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% @rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :rating %><br>
+    <%= f.number_field :rating %>
+  </div>
+  <%= f.hidden_field :tank_id, :value => @tank.id %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<% end %>
 
 <%= link_to 'Edit', edit_tank_path(@tank) %> |
 <%= link_to 'Back', tanks_path %>
+<% end %>
+

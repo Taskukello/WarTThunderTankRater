@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+  @ratings = Rating.where(user_id: (params[:id]))
+  @tanks = Tank.all
   end
 
   # GET /users/new

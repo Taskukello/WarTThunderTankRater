@@ -16,13 +16,10 @@
   <tbody>
     <% @tanks.each do |tank| %>
       <tr>
-        <td><%= tank.name %></td>
+        <td><%= link_to tank.name, tank %></td>
         <td><%= tank.year %></td>
         <td><%= @countries.find(tank.country_id).name %></td>
         <td><%= @types.find(tank.type_id).name %></td>
-        <td><%= link_to 'Show', tank %></td>
-        <td><%= link_to 'Edit', edit_tank_path(tank) %></td>
-        <td><%= link_to 'Destroy', tank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +27,9 @@
 
 <br>
 
+
+<% if current_user %>
 <%= link_to 'New Tank', new_tank_path %>
+<%else%>
+<p>login to add new tanks</p>
+<%end%>

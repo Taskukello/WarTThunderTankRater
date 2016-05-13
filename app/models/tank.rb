@@ -4,6 +4,7 @@ class Tank < ActiveRecord::Base
 
 belongs_to :type
 belongs_to :country
+has_many :ratings
 validates :name, uniqueness: true
 validates :type, presence: true
 validates :country, presence: true

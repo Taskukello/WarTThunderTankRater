@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @rating.rating %>
+</p>
+
+
+<p>
+  <strong>Tank:</strong>
+  <%=link_to @tank.name, @tank %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user.name %>
+</p>
+
+<% if current_user %>
+<%= link_to 'Edit', edit_rating_path(@rating) %> |
+<%= link_to 'Back', ratings_path %>
+<% end %>

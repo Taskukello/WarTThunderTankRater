@@ -12,9 +12,17 @@ class TanksController < ApplicationController
   # GET /tanks/1
   # GET /tanks/1.json
   def show
-  
   @country = Country.find(Tank.find(params[:id]).country_id)
   @type = Type.find(Tank.find(params[:id]).type_id)
+  @ratings = Rating.where(tank_id: (params[:id]))
+  @users = User.all
+  if (current_user)
+  @emptyChecker = @ratings.find_by user_id: current_user.id #oli mukavampaa tehdä tällei ku if lauseella html
+  @rating = Rating.new;
+  else
+  @emptyChecker = nil
+  @rating = nil
+  end
   end
 
   # GET /tanks/new
@@ -31,6 +39,7 @@ class TanksController < ApplicationController
   # POST /tanks
   # POST /tanks.json
   def create
+  if(current_user)
     @tank = Tank.new params.require(:tank).permit(:name, :year, :country_id, :type_id)
 
     respond_to do |format|
@@ -41,7 +50,8 @@ class TanksController < ApplicationController
         @countries = Country.all
 		@types = Type.all
 		format.html {render 'new'}
-      end
+		end
+	  end
     end
   end
 
@@ -49,6 +59,7 @@ class TanksController < ApplicationController
   # PATCH/PUT /tanks/1.json
   def update
     respond_to do |format|
+	if (current_user)
       if @tank.update(tank_params)
         format.html { redirect_to @tank, notice: 'Tank was successfully updated.' }
         format.json { render :show, status: :ok, location: @tank }
@@ -58,15 +69,18 @@ class TanksController < ApplicationController
       end
     end
   end
+  end
 
   # DELETE /tanks/1
   # DELETE /tanks/1.json
   def destroy
+  if (current_user)
     @tank.destroy
     respond_to do |format|
       format.html { redirect_to tanks_url, notice: 'Tank was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
   end
 
   private
