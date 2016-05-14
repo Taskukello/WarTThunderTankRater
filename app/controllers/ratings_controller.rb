@@ -31,7 +31,6 @@ class RatingsController < ApplicationController
   def create
    if (current_user)
     @rating = Rating.new params.require(:rating).permit(:rating, :user_id, :tank_id)
-	Byebug
     respond_to do |format|
       if @rating.save
         format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
