@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-has_many :ratings  
+has_many :ratings, dependent: :destroy  
   
 validate :password_complexity
 validates :name, uniqueness: true

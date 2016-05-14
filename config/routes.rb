@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :weapons_in_tanks
+  resources :weapons
   resources :ratings
   resources :users
   resources :tanks

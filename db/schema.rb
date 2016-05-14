@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511171838) do
+ActiveRecord::Schema.define(version: 20160514131147) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"
@@ -47,6 +47,21 @@ ActiveRecord::Schema.define(version: 20160511171838) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+  end
+
+  create_table "weapons", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "size"
+    t.integer  "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "weapons_in_tanks", force: :cascade do |t|
+    t.integer  "tank_id"
+    t.integer  "weapon_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

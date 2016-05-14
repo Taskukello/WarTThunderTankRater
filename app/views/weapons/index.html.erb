@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Weapons</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>barrel Size(mm)</th>
+      <th>Year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weapons.each do |weapon| %>
+      <tr>
+        <td><%= link_to weapon.name, weapon %></td>
+        <td><%= weapon.size %></td>
+        <td><%= weapon.year %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if current_user %>
+<%= link_to 'New Weapon', new_weapon_path %>
+<%end%>

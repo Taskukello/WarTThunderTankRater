@@ -36,24 +36,26 @@ class TanksController < ApplicationController
   def edit
   end
 
+  
   # POST /tanks
   # POST /tanks.json
   def create
   if(current_user)
     @tank = Tank.new params.require(:tank).permit(:name, :year, :country_id, :type_id)
-
     respond_to do |format|
       if @tank.save
         format.html { redirect_to @tank, notice: 'Tank was successfully created.' }
         format.json { render :show, status: :created, location: @tank }
-      else	  
+      else
         @countries = Country.all
-		@types = Type.all
-		format.html {render 'new'}
-		end
-	  end
+  @types = Type.all
+  format.html {render 'new'}
+  end
+   end
     end
   end
+
+
 
   # PATCH/PUT /tanks/1
   # PATCH/PUT /tanks/1.json

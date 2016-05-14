@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>weapon Name:</strong>
+  <%= @weapon.name %>
+</p>
+
+<p>
+  <strong>Barrel size(mm):</strong>
+  <%= @weapon.size %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @weapon.year %>
+</p>
+<h2> Tanks: </h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weaponTankJoints.each do |tank| %>
+      <tr>
+        <td><%= link_to @tanks.find(tank.tank_id).name, @tanks.find(tank.tank_id) %></td>
+        <td><%= @types.find(@tanks.find(tank.tank_id).type_id).name %></td>
+		<td><%= link_to 'remove', tank, method: :delete, data: { confirm: 'Are you sure?'}%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if current_user %>
+
+<h1> Add tank to this weapon </h1>
+
+<%= form_for (@weapons_in_tank), :url => weapons_in_tanks_path, :html => {:method => :post} do |f| %>
+  <% if @weapons_in_tank.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% @weapons_in_tank.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+    <div class="field">
+    <%= f.label :tank_id %><br>
+     <%= f.select :tank_id, options_from_collection_for_select(@tanks, :id, :name)%>
+  </div>
+  
+  <%= f.hidden_field :weapon_id, :value => @weapon.id %>
+  <div class="actions">
+    <%= f.submit "Add tank"%>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_weapon_path(@weapon) %> |
+<%= link_to 'Back', weapons_path %>
+<%end%>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Weapons In Tanks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tank</th>
+      <th>Weapon</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weapons_in_tanks.each do |weapons_in_tank| %>
+      <tr>
+        <td><%= weapons_in_tank.tank_id %></td>
+        <td><%= weapons_in_tank.weapon_id %></td>
+        <td><%= link_to 'Show', weapons_in_tank %></td>
+        <td><%= link_to 'Edit', edit_weapons_in_tank_path(weapons_in_tank) %></td>
+        <td><%= link_to 'Destroy', weapons_in_tank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Weapons in tank', new_weapons_in_tank_path %>
