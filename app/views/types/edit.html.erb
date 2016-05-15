@@ -1,6 +1,7 @@
 <h1>Editing Type</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @type %> |
-<%= link_to 'Back', types_path %>
+<div class="btn-group" role="group">
+<%= link_to 'Show', @type, class:"btn btn-default" %> 
+<%= link_to 'Back', types_path, class:"btn btn-default" %>
+</div>

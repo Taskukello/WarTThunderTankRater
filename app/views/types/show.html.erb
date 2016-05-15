@@ -33,7 +33,7 @@
 </div>
 <% if current_user %>
 <% if current_user.admin %>
-<%= link_to 'Destroy', @type, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
+<%= link_to 'Destroy', @type, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
 <%end%>
 <%end%>
 </div>
