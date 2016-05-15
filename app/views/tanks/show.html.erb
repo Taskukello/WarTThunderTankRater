@@ -20,6 +20,7 @@
   <%= @type.name%>
 </p>
 <p> number of ratings: <%= @ratings.size %> </p>
+<div>
 <table class= "table">
   <thead>
     <tr>
@@ -34,14 +35,16 @@
       <tr>
         <td><%= rating.rating %></td>
 		<td><%= @users.find(rating.user_id).name %></td>
+		<% if current_user %>
 		<% if current_user.id = rating.user_id %>
 			<td><%= link_to 'remove', rating, method: :delete, data: { confirm: 'Are you sure?'}%>
+		 <% end %>
 	    <%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <h2> weapons: </h2>
 <table class="table table-hover">
   <thead>

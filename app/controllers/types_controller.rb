@@ -5,11 +5,13 @@ class TypesController < ApplicationController
   # GET /types.json
   def index
     @types = Type.all
-  end
+	@tanks = Tank.all
+	end
 
   # GET /types/1
   # GET /types/1.json
   def show
+  @tanks = Tank.where(type_id: (params[:id]))
   end
 
   # GET /types/new

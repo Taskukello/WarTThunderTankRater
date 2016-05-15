@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+	  <th>Number of tanks </th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @types.each do |type| %>
       <tr>
         <td><%= link_to type.name, type %></td>
+		<td><%= @tanks.where(type_id: type.id).size %> </td>
       </tr>
     <% end %>
   </tbody>

@@ -5,6 +5,7 @@ class CountriesController < ApplicationController
   # GET /countries.json
   def index
     @countries = Country.all
+	@tanks = Tank.all
   end
 
   # GET /countries/1
