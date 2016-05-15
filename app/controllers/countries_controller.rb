@@ -11,6 +11,7 @@ class CountriesController < ApplicationController
   # GET /countries/1.json
   def show
   @country = Country.find(params[:id])
+  @tanks = Tank.where(country_id: (params[:id]))
   end
 
   # GET /countries/new
@@ -59,7 +60,7 @@ end
   # DELETE /countries/1
   # DELETE /countries/1.json
   def destroy
-  if (current_user)
+  if (current_user.admin)
     @country.destroy
     respond_to do |format|
       format.html { redirect_to countries_url, notice: 'Country was successfully destroyed.' }

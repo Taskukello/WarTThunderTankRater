@@ -12,10 +12,13 @@ class TanksController < ApplicationController
   # GET /tanks/1
   # GET /tanks/1.json
   def show
+  @weaponTankJoints = WeaponsInTank.where(tank_id: (params[:id]))
   @country = Country.find(Tank.find(params[:id]).country_id)
   @type = Type.find(Tank.find(params[:id]).type_id)
   @ratings = Rating.where(tank_id: (params[:id]))
   @users = User.all
+  @weapons = Weapon.all
+  @weapons_in_tank = WeaponsInTank.new
   if (current_user)
   @emptyChecker = @ratings.find_by user_id: current_user.id #oli mukavampaa tehdä tällei ku if lauseella html
   @rating = Rating.new;
@@ -34,6 +37,8 @@ class TanksController < ApplicationController
 
   # GET /tanks/1/edit
   def edit
+      @countries = Country.all
+	  @types = Type.all
   end
 
   
@@ -76,7 +81,7 @@ class TanksController < ApplicationController
   # DELETE /tanks/1
   # DELETE /tanks/1.json
   def destroy
-  if (current_user)
+  if (current_user.admin)
     @tank.destroy
     respond_to do |format|
       format.html { redirect_to tanks_url, notice: 'Tank was successfully destroyed.' }

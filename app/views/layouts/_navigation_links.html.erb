@@ -1,1 +1,14 @@
 <%# add navigation links to this file %>
+<li><%= link_to 'Countries', countries_path %></li>
+<li><%= link_to 'Types', types_path %></li>
+<li><%= link_to 'Tanks', tanks_path %></li>
+<li><%= link_to 'weapons', weapons_path %></li>
+<li><%= link_to 'users', users_path %></li>
+<li><%= link_to 'ratings', ratings_path %></li>
+<% if not current_user.nil? %>
+    <li><%= link_to current_user.name, current_user %></li>
+    <li><%= link_to 'signout', signout_path, method: :delete %></li>
+<% else %>
+    <li><%= link_to 'signin', signin_path %></li>
+    <li><%= link_to 'signup', signup_path %></li>
+<% end %>

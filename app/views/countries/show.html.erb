@@ -4,6 +4,33 @@
   <strong>Name:</strong>
   <%= @country.name %>
 </p>
+<h3> Tanks of this country: </h3>
+<div class= "col-md-3">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+	  <th> year </th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_country_path(@country) %> |
+  <tbody>
+    <% @tanks.each do |tank| %>
+      <tr>
+        <td><%= link_to tank.name, tank %></td>
+		<td><%= tank.year %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if (current_user) %>
+<%= link_to 'Edit', edit_country_path(@country) %>
+<%end%>
 <%= link_to 'Back', countries_path %>
+<% if (current_user.admin) %>
+<%= link_to 'Destroy', @type, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%end%>
+</div>

@@ -6,7 +6,6 @@ gem 'coffee-script-source', '1.8.0'
 gem 'rails', '4.2.5.1'
 #ruby '2.1.8'
 
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

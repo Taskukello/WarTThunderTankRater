@@ -34,6 +34,30 @@
       <tr>
         <td><%= rating.rating %></td>
 		<td><%= @users.find(rating.user_id).name %></td>
+		<% if current_user.id = rating.user_id %>
+			<td><%= link_to 'remove', rating, method: :delete, data: { confirm: 'Are you sure?'}%>
+	    <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2> weapons: </h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Size(mm)</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weaponTankJoints.each do |weapon| %>
+      <tr>
+        <td><%= link_to @weapons.find(weapon.weapon_id).name, @weapons.find(weapon.weapon_id) %></td>
+        <td><%= @weapons.find(weapon.weapon_id).size%></td>
+		<td><%= link_to 'remove', weapon, method: :delete, data: { confirm: 'Are you sure?'}%>
       </tr>
     <% end %>
   </tbody>
@@ -65,6 +89,32 @@
   </div>
 <% end %>
 
+<% end %>
+
+<h1> Add weapon to this tank </h1>
+
+<%= form_for (@weapons_in_tank), :url => weapons_in_tanks_path, :html => {:method => :post} do |f| %>
+  <% if @weapons_in_tank.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% @weapons_in_tank.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+    <div class="field">
+    <%= f.label :weapon_id %><br>
+     <%= f.select :weapon_id, options_from_collection_for_select(@weapons, :id, :name)%>
+  </div>
+  
+  <%= f.hidden_field :tank_id, :value => @tank.id %>
+  <div class="actions">
+    <%= f.submit "Add weapon"%>
+  </div>
 <% end %>
 
 <%= link_to 'Edit', edit_tank_path(@tank) %> |

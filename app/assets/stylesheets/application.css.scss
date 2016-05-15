@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+ 
+html, body, .container-fluid, .row {
+  height: 100%;
+}
+.sidebar {
+  background-color: #FFFFFF;
+}
+
+@media (min-width: 500px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 600;
+    display: block;
+    background-color: #000000 ;
+  }
+}

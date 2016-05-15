@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
   def index
     @ratings = Rating.all
 	@tanks = Tank.all
-		@users = User.all
+    @users = User.all
   end
 
   # GET /ratings/1
@@ -24,6 +24,7 @@ class RatingsController < ApplicationController
 
   # GET /ratings/1/edit
   def edit
+    @tanks = Tank.all
   end
 
   # POST /ratings
@@ -33,20 +34,32 @@ class RatingsController < ApplicationController
     @rating = Rating.new params.require(:rating).permit(:rating, :user_id, :tank_id)
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to :back, notice: 'Rating was successfully created.' }
         format.json { render :back, status: :created, location: @rating }
       else
-        format.html { render :back }
+	    @tanks = Tank.all
+        format.html { render :edit }
         format.json { render json: @rating.errors, status: :unprocessable_entity }
       end
     end
   end
-
-
+end
+  # DELETE /ratings/1
+  # DELETE /ratings/1.json
+  def destroy
+  if (current_user.id = @rating.user_id)
+    @rating.destroy
+		respond_to do |format|
+			format.html { redirect_to :back, notice: 'Rating was successfully destroyed.' }
+			format.json { head :no_content }
+		end
+	end
+  end
+ 
   # PATCH/PUT /ratings/1
   # PATCH/PUT /ratings/1.json
   def update
-  fi (current_user.id = @rating.user_id)
+   if (current_user.id = @rating.user_id)
     respond_to do |format|
       if @rating.update(rating_params)
         format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
@@ -57,19 +70,8 @@ class RatingsController < ApplicationController
       end
     end
   end
+end
 
-  # DELETE /ratings/1
-  # DELETE /ratings/1.json
-  def destroy
-  if (current_user.id = @rating.user_id)
-    @rating.destroy
-		respond_to do |format|
-			format.html { redirect_to ratings_url, notice: 'Rating was successfully destroyed.' }
-			format.json { head :no_content }
-		end
-	end
-  end
-  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rating
