@@ -10,14 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-inline">
+  <div class="form-group">
+    <label><%= f.label :name %><br></label>
+    <input class="form-control" <%= f.text_field :name %></input>
   </div>
-  <div class="field">
-    <%= f.label :year %><br>
-    <%= f.number_field :year %>
+  
+  <div class="form-group">
+    <label><%= f.label :year %><br></label>
+    <input class="form-control" <%= f.number_field :year %></input> 
   </div>
   <div class="field">
     <%= f.label :country_id %><br>
@@ -28,6 +29,7 @@
     <%= f.select :type_id, options_from_collection_for_select(@types, :id, :name)%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class:"btn btn-primary" %>
+  </div>
   </div>
 <% end %>

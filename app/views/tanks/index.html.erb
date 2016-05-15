@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Tanks</h1>
-
-<table class="table table-hover">
+<div class = "col-md-5">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -29,7 +29,8 @@
 
 
 <% if current_user %>
-<%= link_to 'New Tank', new_tank_path %>
+<%= link_to 'New Tank', new_tank_path, class:"btn btn-default" %>
 <%else%>
 <p>login to add new tanks</p>
 <%end%>
+</div>

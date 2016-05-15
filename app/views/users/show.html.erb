@@ -1,12 +1,14 @@
+
 <p id="notice"><%= notice %></p>
 
-<p>
+<h3>
   <strong>Name:</strong>
   <%= @user.name %>
-</p>
+</h3>
 
-<p> ratings by <%= @user.name %>:
-
+<h3> ratings by <%= @user.name %>: </h3>
+<div class="row">
+<div class="col-md-3">
 <table class= "table">
   <thead>
     <tr>
@@ -26,7 +28,11 @@
   </tbody>
 </table>
 
+</div>
+</div>
+<div class="btn-group" role="group">
 <% if (current_user == @user) %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_path(@user), class:"btn btn-default" %> 
+<%end%>
+<%= link_to 'Back', users_path, class:"btn btn-default" %>
+</div>

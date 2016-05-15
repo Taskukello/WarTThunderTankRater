@@ -1,20 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h3>
   <strong>weapon Name:</strong>
   <%= @weapon.name %>
-</p>
+</h3>
 
-<p>
+<h3>
   <strong>Barrel size(mm):</strong>
   <%= @weapon.size %>
-</p>
+</h3>
 
-<p>
+<h3>
   <strong>Year:</strong>
   <%= @weapon.year %>
-</p>
-<h2> Tanks: </h2>
+</h3>
+<h3> Tanks: </h3>
+<div class="row"> 
+<div class="col-md-3">
 <table class="table table-hover">
   <thead>
     <tr>
@@ -34,8 +36,8 @@
     <% end %>
   </tbody>
 </table>
-
-
+</div>
+</div>
 <% if current_user %>
 
 <h1> Add tank to this weapon </h1>
@@ -52,7 +54,6 @@
       </ul>
     </div>
   <% end %>
-  
     <div class="field">
     <%= f.label :tank_id %><br>
      <%= f.select :tank_id, options_from_collection_for_select(@tanks, :id, :name)%>
@@ -60,10 +61,14 @@
   
   <%= f.hidden_field :weapon_id, :value => @weapon.id %>
   <div class="actions">
-    <%= f.submit "Add tank"%>
+    <%= f.submit "Add tank", class:"btn btn-primary" %>
   </div>
 <% end %>
-
-<%= link_to 'Edit', edit_weapon_path(@weapon) %> |
-<%= link_to 'Back', weapons_path %>
+<% if current_user.admin %>
+	<%= link_to 'Destroy', @weapon, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
 <%end%>
+<div class="btn-group" role="group">
+<%= link_to 'Edit', edit_weapon_path(@weapon), class:"btn btn-default"  %>
+<%end%>
+<%= link_to 'Back', weapons_path, class:"btn btn-default"  %>
+</div>

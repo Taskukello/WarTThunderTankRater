@@ -1,6 +1,7 @@
 <h1>Editing Tank</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @tank %> |
-<%= link_to 'Back', tanks_path %>
+<div class="btn-group" role="group">
+<%= link_to 'Show', @tank , class:"btn btn-default"%> 
+<%= link_to 'Back', tanks_path , class:"btn btn-default"%>
+</div>
