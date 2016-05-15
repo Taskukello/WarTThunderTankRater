@@ -1,10 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h3>
   <strong>Name:</strong>
   <%= @type.name %>
-</p>
+</h3>
 
-<%= link_to 'Edit', edit_type_path(@type) %> |
-<%= link_to 'Back', types_path %> |
-<%= link_to 'Destroy', @type, method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class = "col-md-3" >
+<h3> Tanks of this type: </h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+	  <th>Year</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tanks.each do |tank| %>
+      <tr>
+        <td><%= link_to tank.name, tank %></td>
+		<td><%= tank.year %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="btn-group" role="group">
+<% if current_user %>
+<%= link_to 'Edit', edit_type_path(@type), class:"btn btn-default"%> 
+<%end%>
+<%= link_to 'Back', types_path, class:"btn btn-default" %> 
+</div>
+<% if current_user %>
+<% if current_user.admin %>
+<%= link_to 'Destroy', @type, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
+<%end%>
+<%end%>
+</div>

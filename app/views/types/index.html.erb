@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Types</h1>
-
-<table class="table table-hover">
+<div class = "col-md-3" >
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
 	  <th>Number of tanks </th>
-      <th colspan="1"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -23,8 +23,8 @@
 
 <br>
 <% if current_user %>
-<%= link_to 'New Type', new_type_path %>
+<%= link_to 'New Type', new_type_path, class:"btn btn-default"%>
 <%else%>
 <p>login to add new types</p>
 <%end%>
-
+</div>
