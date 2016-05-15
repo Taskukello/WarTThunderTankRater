@@ -26,5 +26,8 @@
 <br>
 <% if current_user %>
 <%= link_to 'New Weapon', new_weapon_path, class:"btn btn-default" %>
+<%else%>
+<p> login to add new weapon</p>
 <%end%>
+
 </div>

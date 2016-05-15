@@ -73,8 +73,8 @@
 </div>
 <div class="row">
     <div class="col-md-3">
-	<h3> Add Rating </h3>
     <% if current_user %>
+		<h3> Add Rating </h3>
 <% if @emptyChecker == nil%>
 <%= form_for (@rating), :url => ratings_path, :html => {:method => :post} do |f| %>
   <% if @rating.errors.any? %>
