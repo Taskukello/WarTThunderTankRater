@@ -1,1 +1,8 @@
-Nettisivu johon on listattu ainakin osa War thunder pelin panssariajoneuvoista.
+Dokumentaatio:
+
+https://github.com/Taskukello/WarTThunderTankRater/wiki
+
+Heroku: 
+
+http://frozen-chamber-16555.herokuapp.com/countries
+
